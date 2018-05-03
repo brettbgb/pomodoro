@@ -98,7 +98,7 @@ class Timer extends React.Component {
     this.timer = 0;
     this.breakCount = 1;
     this.hadBigBreak = false;
-    this.state = { time: {}, seconds: 5 };
+    this.state = { time: {}, seconds: 1500 };
     this.startTimer = this.startTimer.bind(this);
     this.displayTime = this.displayTime.bind(this);
   }
