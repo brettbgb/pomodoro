@@ -51,20 +51,20 @@ class ToDoList extends React.Component {
         this.setState({data});
     }
 
+    clearRows() {
+        // clear current selected item
+        data.forEach(function (value) {
+           value.isSelected = false;
+        });
+    }
+
     listRowClick = (selectedIndex) => {
-      let ul = document.getElementsByClassName("");
 
-      // set the selected item in state to force a render with selected background, etc
-      
-        //this.state.data.forEach(function (value) {
-         //   this.setState({value.isSelected = false})
-            
-          //  });
+        this.clearRows();
 
-        //});
-        //this.setState({
-         //  data[value.index].isSelected = true;
-        //})
+        // select the current row
+        data[selectedIndex-1].isSelected = true;
+        this.setState({data});
     }
 
     render() {
@@ -74,7 +74,7 @@ class ToDoList extends React.Component {
               <ul className="todo-list">
                   {data.map(i => <li 
                                    className={i.isSelected ? 'selected' : ''} 
-                                   onClick={this.listRowClick.bind(this, i.index)} 
+                                   onClick={() => this.listRowClick(i.index)}
                                    key={i.index}>
                                    <input className="check-item" type='checkbox' /> {i.description}
                                  </li>)}        
@@ -87,8 +87,7 @@ class ToDoList extends React.Component {
     }
 }
 
-class Timer extends React.Component {
-    
+class Timer extends React.Component {    
 
   componentWillUnmount() {
       clearInterval(this.timer);
